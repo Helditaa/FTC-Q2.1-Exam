@@ -3,7 +3,7 @@ pragma solidity^0.5.0;
 contract CoShoe {
 
     struct Shoe {
-        address owner; //address of the owner
+        address payable owner; //address of the owner
         string name; //name of owner
         string image; //url of the image
         bool sold;
@@ -13,5 +13,9 @@ contract CoShoe {
     uint256 shoesSold = 0;
 
     Shoe[] public shoes;
+
+    constructor() public {
+        shoes.push(Shoe(msg.sender, "","",false));
+    }
 
 }
