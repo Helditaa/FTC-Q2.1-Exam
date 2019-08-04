@@ -9,8 +9,9 @@ contract CoShoe {
         bool sold;
     }
 
-    uint256 price = 0.5 * 10 ** 9;
+    uint256 price = 5*10**17;
     uint256 shoesSold = 0;
+    uint256 count = 0;
 
     Shoe[] public shoes;
 
@@ -20,8 +21,12 @@ contract CoShoe {
         }
     }
 
+    function getNumberofTokens() public view returns(uint count) {
+        return shoes.length;
+    }
+
     function buyShoe(string memory _name, string memory _image) public payable { //used to be external payable
-        require(shoes.length < 100, "Shoes array is full");
+        //require(shoes.length >0, "Shoes array is full");
         //require(Shoe.sold == true)
         require(msg.value == price, "Value is not equal to price");
 
@@ -48,5 +53,6 @@ contract CoShoe {
             }
         }
         return checkPurchase;
-    } 
+    }
+
 }
