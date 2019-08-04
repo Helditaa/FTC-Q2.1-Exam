@@ -39,13 +39,20 @@ contract("CoShoe",(accounts) => {
         })
 
         it('should return correct number of trues', async () => {
-            //let ShoeInstance = await CoShoe.deployed()
+            let ShoeInstance = await CoShoe.deployed()
 
             //await ShoeInstance.checkPurchases()
 
-            //let checkBuy = await ShoeInstance.checkPurchases()
+            let checkBuy = await ShoeInstance.checkPurchases()
+            let trueCount = 0
+            for (var i = 0; i< checkBuy.length; i++) {
+                var iNew = checkBuy[i]
+                if (iNew == true) {
+                    trueCount = trueCount + 1
+                }
+            }
             //console.log(checkBuy)
-            //assert.equal(checkBuy.length == 1, 'Should be true')
+            assert.equal(trueCount, 1, 'Should be true')
             
         })
         
