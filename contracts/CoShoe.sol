@@ -18,6 +18,7 @@ contract CoShoe {
     constructor() public {
         for (uint i = 1; i <= 100; i++) {
         shoes.push(Shoe(msg.sender, "","",false));
+        count++;
         }
     }
 
