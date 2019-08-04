@@ -42,6 +42,8 @@ contract CoShoe {
         return shoesSold;
     }
 
+
+
     function checkPurchases() external view returns (bool[] memory){
         bool[] memory checkPurchase;
         for (uint256 i = 0; i < shoes.length; i++){
