@@ -15,22 +15,34 @@ contract CoShoe {
     Shoe[] public shoes;
 
     constructor() public {
+        for (uint i = 1; i <= 100; i++) {
         shoes.push(Shoe(msg.sender, "","",false));
-        // mint 100 tokens
+        }
     }
 
     function buyShoe(string memory _name, string memory _image) public payable { //used to be external payable
-        require(shoes.length > 0, "shoes array is empty");
+        require(shoes.length < 100, "Shoes array is full");
         //require(Shoe.sold == true)
-        require(msg.value == price, "value is not equal to value");
+        require(msg.value == price, "Value is not equal to price");
 
-        shoes.push(Shoe(msg.sender, _name, _image, true));
-        shoesSold++;
+        for (uint256 i = 0; i < shoes.length; i++) {
+        if(shoes[i].sold == false)
+            {
+                shoes[i].owner = msg.sender;
+                shoes[i].name = _name;
+                shoes[i].image = _image;
+                shoes[i].sold = true;
+                shoes.push(Shoe(shoes[i].owner, shoes[i].name,shoes[i].image,shoes[i].sold));
+                shoesSold++;
+                
+            } 
+        }
+
     }
 
     function checkPurchases() external view returns (bool[] memory){
         bool[] memory checkPurchase;
-        for (uint i = 0; i < shoes.length; i++){
+        for (uint256 i = 0; i < shoes.length; i++){
             if (shoes[i].owner == msg.sender){
                 checkPurchase[i] = true;
             }
