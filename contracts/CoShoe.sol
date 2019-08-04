@@ -26,19 +26,20 @@ contract CoShoe {
         return shoes.length;
     }
 
-    function buyShoe(string memory _name, string memory _image) public payable { //used to be external payable
-
+    function buyShoe(string memory _name, string memory _image) public payable returns(uint){ //used to be external payable
+        
         require(shoesSold < shoes.length, "exceeded number of shoes");
         require(msg.value == price, "Value is not equal to price");
-        uint256 ii = shoesSold + 1;
-    
-        shoes[ii].owner = msg.sender;
-        shoes[ii].name = _name;
-        shoes[ii].image = _image;
-        shoes[ii].sold = true;
-        //shoes.push(Shoe(shoes[ii].owner, shoes[ii].name,shoes[ii].image,shoes[ii].sold));
+        
+        uint256 i = shoesSold + 1;
+        require(shoes[i].sold == false,'shoe has been bought');
+        
+        shoes[i].owner = msg.sender;
+        shoes[i].name = _name;
+        shoes[i].image = _image;
+        shoes[i].sold = true;
         shoesSold++;
-
+        return shoesSold;
     }
 
     function checkPurchases() external view returns (bool[] memory){

@@ -8,11 +8,10 @@ contract("CoShoe",(accounts) => {
 
     //predefine parameters
     const validShoe = {
-        name: 'Co',
-        image: exampleImageURL,
+        name: "",
+        image: "",
         sold: false,
         price: web3.utils.toWei('0.5', 'ether')
-
     }
 
     // Initialize shoes sold
@@ -26,31 +25,28 @@ contract("CoShoe",(accounts) => {
             assert.equal(shoes,100, "not 100 tokens minted")
         })
         it('correctly transfers ownership', async () => {
-            // let ShoeInstance = await CoShoe.deployed()
+            let ShoeInstance = await CoShoe.deployed()
 
-            // await ShoeInstance.buyShoe(validShoe.name,validShoe.image, {
-            //     from: shoeOwner, value: validShoe.price
-            // })
-            // let shoe = await ShoeInstance.shoes(0)
+            await ShoeInstance.buyShoe(validShoe.name,validShoe.image, {
+                from: shoeOwner, value: validShoe.price
+            })
+            let shoe = await ShoeInstance.shoes(0)
 
-            // assert.equal(shoe['owner'],shoeOwner, 'Owner does not match')
-            // assert.equal(shoe['name'],validShoe.name,'name does not match')
-            // assert.equal(shoe['image'],validShoe.image,'image does not match')
-            // assert.equal(shoe.sold, false, 'status not changed') //review
-            
-            // assert.equal(validShoe.price == price, "Not sufficient funds")
-            //noShoes += 1;
-            //console.log(noShoes)
-
-
+            assert.equal(shoe['owner'],shoeOwner, 'Owner does not match')
+            assert.equal(shoe['name'],validShoe.name,'name does not match')
+            assert.equal(shoe['image'],validShoe.image,'image does not match')
+            assert.equal(shoe.sold, false, 'status not changed') //review
+            assert.equal(validShoe.price, price, "Not sufficient funds")
         })
 
         it('should return correct number of trues', async () => {
             let ShoeInstance = await CoShoe.deployed()
 
-            let checkBuy = await ShoeInstance.checkPurchases()
+            await ShoeInstance.checkPurchases()
+
+            let checkBuy = await ShoeInstance.checkPurchase(0)
             console.log(checkBuy)
-            assert.equal(checkBuy.length, 1, 'Should be true')
+            assert.equal(checkBuy.length == 1, 'Should be true')
             
         })
         
