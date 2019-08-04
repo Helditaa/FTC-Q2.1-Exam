@@ -21,6 +21,7 @@ contract CoShoe {
 
     function buyShoe(string memory _name, string memory _image) public payable { //used to be external payable
         require(shoes.length > 0, "shoes array is empty");
+        //require(Shoe.sold == true)
         require(msg.value == price, "value is not equal to value");
 
         shoes.push(Shoe(msg.sender, _name, _image, true));

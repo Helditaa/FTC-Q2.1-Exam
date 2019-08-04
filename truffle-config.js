@@ -18,9 +18,9 @@
  *
  */
 
-const HDWalletProvider = require('truffle-hdwallet-provider');
-const infuraKey = "4b769ff1ec2b4ddb84a45e2a434cb122"; //bring infura here
-let mnemonic = require('./mnemonic');
+// const HDWalletProvider = require('truffle-hdwallet-provider');
+// const infuraKey = "4b769ff1ec2b4ddb84a45e2a434cb122"; //bring infura here
+// let mnemonic = require('./mnemonic');
 // const fs = require('fs');
 // const mnemonic = fs.readFileSync(".secret").toString().trim();
 
@@ -47,11 +47,11 @@ module.exports = {
      port: 8545,            // Standard Ethereum port (default: none)
      network_id: "*",       // Any network (default: none)
     },
-    coverage: {
-      host: "127.0.0.1", // Localhost (default: none)
-      port: 8545, // Standard Ethereum port (default: none)
-      network_id: "*", // Any network (default: none)
-    },
+    // coverage: {
+    //   host: "127.0.0.1", // Localhost (default: none)
+    //   port: 8545, // Standard Ethereum port (default: none)
+    //   network_id: "*", // Any network (default: none)
+    // },
     // ropsten: {
     //   provider: function () {
     //     return new HDWalletProvider(mnemonic, `https://ropsten.infura.io/v3/${infuraApikey}`);
@@ -60,14 +60,14 @@ module.exports = {
     //   gas: 7000000, // default = 4712388
     //   gasPrice: 6000000000 // default = 100 gwei = 100000000000
     // },
-    kovan: {
-      provider: function () {
-        return new HDWalletProvider(mnemonic, `https://kovan.infura.io/v3/${infuraApikey}`);
-      },
-      network_id: 42,
-      gas: 7000000, // default = 4712388
-      gasPrice: 6000000000 // default = 100 gwei = 100000000000
-    },
+    // kovan: {
+    //   provider: function () {
+    //     return new HDWalletProvider(mnemonic, `https://kovan.infura.io/v3/${infuraApikey}`);
+    //   },
+    //   network_id: 42,
+    //   gas: 7000000, // default = 4712388
+    //   gasPrice: 6000000000 // default = 100 gwei = 100000000000
+    // },
 
 
 
